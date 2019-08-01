@@ -7,33 +7,15 @@ from django.utils import timezone
 
 class Application(models.Model):
     app_name = models.CharField(max_length=200)
+    app_description = models.CharField(max_length=400)
+    app_link = models.URLField(max_length=200)
 
     def __str__(self):
         return self.app_name
 
-
-class Name(models.Model):
-    name_text = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name_text
-
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-    def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+class Articles(models.Model):
+    art_app_name = models.CharField(max_length=200)
+    art_title = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.question_text
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.choice_text
-
+        return self.art_title
