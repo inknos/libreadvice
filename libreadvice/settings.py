@@ -43,6 +43,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'libreadvice.urls'
@@ -88,10 +91,10 @@ DATABASES = {
 public_root = root.path('public/')
 #print(public_root)
 
-MEDIA_ROOT = public_root('media')
-MEDIA_URL = 'media/'
-STATIC_ROOT = public_root('static')
-STATIC_URL = 'static/' # Static files (CSS, JavaScript, Images)
+#MEDIA_ROOT = public_root('media')
+#MEDIA_URL = 'media/'
+#STATIC_ROOT = public_root('static')
+#STATIC_URL = 'static/' # Static files (CSS, JavaScript, Images)
 
 SECRET_KEY = env('SECRET_KEY') # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
 
@@ -134,6 +137,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
