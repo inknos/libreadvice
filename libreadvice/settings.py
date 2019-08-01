@@ -20,8 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 
-#ALLOWED_HOSTS = ["localhost", "192.168.0.121", "127.0.0.1", "::1", "0.0.0.0", "libreadvice.herokuapp.com/"]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["localhost", "192.168.0.121", "127.0.0.1", "::1", "0.0.0.0", ".herokuapp.com/"]
+#ALLOWED_HOSTS = ['*']
 
 # Application definition
 
