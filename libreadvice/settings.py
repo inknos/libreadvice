@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 #ALLOWED_HOSTS = ["localhost", "192.168.0.121", "127.0.0.1", "::1", "0.0.0.0"]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://libreadvice.herokuapp.com']
 
 # Application definition
 
