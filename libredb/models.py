@@ -5,10 +5,14 @@ from django.utils import timezone
 
 # Create your models here.
 
+# TODO insert help_text to see grey text to describe fields
+
 class Application(models.Model):
     app_name = models.CharField(max_length=200)
-    app_description = models.CharField(max_length=400)
-    app_link = models.URLField(max_length=200)
+    app_description = models.CharField(
+        max_length=400, default="no description yet")
+    app_link = models.URLField(
+        max_length=200, default="https://")
 
     APP_GRADE_CHOICES = [
         ('1', 'Terrible'),
@@ -50,10 +54,20 @@ class Application(models.Model):
 class Article(models.Model):
     art_app_name = models.CharField(max_length=200) # Name of the app: must be in the db
     art_title = models.CharField(max_length=200) # Name of the article
-    art_subtitle = models.CharField(max_length=200) # Single phrase to catch the attention
-    art_abstract = models.CharField(max_length=500) # Single paragraph to introduce and sum up
-    art_description = models.CharField(max_length=280) # Post-like description
-    art_link = models.URLField(max_length=200) # link to the article in libreadvice.org
+    art_subtitle = models.CharField( # Single phrase to catch the attention
+        max_length=200,
+        default="no subtitle yet"
+    )
+    art_abstract = models.CharField( # Single paragraph to introduce and sum up
+        max_length=500, default="no abstract yet")
+    art_description = models.CharField( # Post-like description
+        max_length=280,
+        default="no description yet",
+    )
+    art_link = models.URLField( # link to the article in libreadvice.org
+        max_length=200,
+        default="no link to article yet"
+    )
     ART_STATE_CHOICE = [
         ('TO', 'TODO'),             # Just a concept
         ('WP', 'Work In Progress'), # Started, link created
@@ -74,7 +88,10 @@ class Article(models.Model):
 class Pill(models.Model):
     pil_art_name = models.CharField(max_length=200)
     pil_name = models.CharField(max_length=200)
-    pil_text = models.CharField(max_length=280)
+    pil_text = models.CharField(
+        max_length=280,
+        default="no text yet"
+    )
     PIL_STATE_CHOICE = [
         ('TO', 'TODO'),             # Just a concept
         ('WP', 'Work In Progress'), # Started, link created
