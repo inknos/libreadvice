@@ -48,19 +48,46 @@ class Application(models.Model):
         return self.app_name
 
 class Article(models.Model):
-    art_app_name = models.CharField(max_length=200)
-    art_title = models.CharField(max_length=200)
-    art_link = models.URLField(max_length=200)
-    art_written = models.BooleanField(default=False)
-    art_published = models.BooleanField(default=False)
+    art_app_name = models.CharField(max_length=200) # Name of the app: must be in the db
+    art_title = models.CharField(max_length=200) # Name of the article
+    art_subtitle = models.CharField(max_length=200) # Single phrase to catch the attention
+    art_abstract = models.CharField(max_length=500) # Single paragraph to introduce and sum up
+    art_description = models.CharField(max_length=280) # Post-like description
+    art_link = models.URLField(max_length=200) # link to the article in libreadvice.org
+    ART_STATE_CHOICE = [
+        ('TO', 'TODO'),             # Just a concept
+        ('WP', 'Work In Progress'), # Started, link created
+        ('DR', 'Drafted'),          # Title created, subtitle, ...
+        ('RW', 'Review'),           # Finished it needs correction
+        ('TP', 'To Publish'),       # Ready to go online
+        ('PU', 'Published'),        #
+    ]
+    art_state = models.CharField(
+        max_length=2,
+        choices=ART_STATE_CHOICE,
+        default='TO'
+    )
 
     def __str__(self):
         return self.art_title
 
-class Pills(models.Model):
+class Pill(models.Model):
+    pil_art_name = models.CharField(max_length=200)
     pil_name = models.CharField(max_length=200)
     pil_text = models.CharField(max_length=280)
-    pil_published = models.BooleanField(default=False)
+    PIL_STATE_CHOICE = [
+        ('TO', 'TODO'),             # Just a concept
+        ('WP', 'Work In Progress'), # Started, link created
+        ('DR', 'Drafted'),          # Title created, subtitle, ...
+        ('RW', 'Review'),           # Finished it needs correction
+        ('TP', 'To Publish'),       # Ready to go online
+        ('PU', 'Published'),        #
+    ]
+    pil_state = models.CharField(
+        max_length=2,
+        choices=PIL_STATE_CHOICE,
+        default='TO',
+    )
 
     def __str__(self):
         return self.pil_name
