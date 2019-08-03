@@ -10,9 +10,15 @@ from django.utils import timezone
 class Application(models.Model):
     app_name = models.CharField(max_length=200)
     app_description = models.CharField(
-        max_length=400, default="no description yet")
+        max_length=400,
+        default="no description yet",
+        blank=True
+    )
     app_link = models.URLField(
-        max_length=200, default="https://")
+        max_length=200,
+        default="https://",
+        blank=True
+    )
 
     APP_GRADE_CHOICES = [
         ('1', 'Terrible'),
@@ -56,17 +62,23 @@ class Article(models.Model):
     art_title = models.CharField(max_length=200) # Name of the article
     art_subtitle = models.CharField( # Single phrase to catch the attention
         max_length=200,
-        default="no subtitle yet"
+        default="no subtitle yet",
+        blank=True,
     )
     art_abstract = models.CharField( # Single paragraph to introduce and sum up
-        max_length=500, default="no abstract yet")
+        max_length=500,
+        default="no abstract yet",
+        blank=True,
+    )
     art_description = models.CharField( # Post-like description
         max_length=280,
         default="no description yet",
+        blank=True,
     )
     art_link = models.URLField( # link to the article in libreadvice.org
         max_length=200,
-        default="no link to article yet"
+        default="no link to article yet",
+        blank=True
     )
     ART_STATE_CHOICE = [
         ('TO', 'TODO'),             # Just a concept
@@ -90,7 +102,8 @@ class Pill(models.Model):
     pil_name = models.CharField(max_length=200)
     pil_text = models.CharField(
         max_length=280,
-        default="no text yet"
+        default="no text yet",
+        blank=True,
     )
     PIL_STATE_CHOICE = [
         ('TO', 'TODO'),             # Just a concept
