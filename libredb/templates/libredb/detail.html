@@ -10,33 +10,42 @@
 
     <title>Database</title>
     <div class="container">
-
-    {% if latest_application_list %}
-        <table class="table">
+        {% if application %}
+        <table>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Descrizione</th>
-                    <th scope="col">Link</th>
+                    <th>Categoria</th><th>Voto</th><th></th>
                 </tr>
             </thead>
+
             <tbody>
-                {% for application in latest_application_list %}
                 <tr>
-                <th scope="row">{{application}}</th>
-                    <td><a href="/libredb/{{ application.app_name }}/">{{ application.app_name }}</a></td>
-                    <td>{{ application.app_description }}</td>
-                    <td><a href="{{ application.app_link }}/">Link</td>
+                    <td> Libre </td><td> {% for bullett in libre_rate %} {{ bullett }} {% endfor %} </td><td> {{ libre }} </td>
                 </tr>
-                {% endfor %}
-                {% else %}
-                <th></th><tr></tr><tr>Nessuna Applicazione trovata</tr><tr></tr>
-                {% endif %}
+                <tr>
+                    <td> Praticità </td><td> {% for bullett in usability_rate %} {{ bullett }} {% endfor %} </td><td> {{ usability}} </td>
+                </tr>
+                <tr>
+
+                    <td> Compatibilità </td><td> {% for bullett in porting_rate %} {{ bullett }} {% endfor %} </td><td> {{ porting }} </td>
+                </tr>
+                <tr>
+
+                    </td><td> Potenzialità </td><td> {% for bullett in potential_rate %} {{ bullett }} {% endfor %} </td><td> {{ potential }} </td>
+                </tr>
+                <tr>
+
+                    <td> Design </td><td> {% for bullett in design_rate %} {{ bullett }} {% endfor %} </td><td> {{ design }} </td>
+                </tr>
+                <tr>
+
+                    <td> Voto finale</td><td></td><td> {{ average }} </td>
+                    {% else %}
+                    <th></th>
+                    <tr></tr><tr>Nessuna applicazione trovata</tr><tr></tr>
+                    {% endif %}
             </tbody>
         </table>
-
-
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
