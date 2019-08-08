@@ -58,7 +58,7 @@ def insert_application(request):
 
 
 class ApplicationViewSet(viewsets.ModelViewSet):
-    queryset = Application.objects.all().order_by('-name')
+    queryset = Application.objects.all().order_by('app_full_name')
     serializer_class = ApplicationSerializer
 
 class ArticleViewSet(viewsets.ModelViewSet):

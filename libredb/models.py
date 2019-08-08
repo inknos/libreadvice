@@ -8,7 +8,7 @@ from django.utils import timezone
 # TODO insert help_text to see grey text to describe fields
 
 class Application(models.Model):
-    app_name = models.CharField(max_length=200)
+    app_full_name = models.CharField(max_length=200)
     app_description = models.CharField(
         max_length=400,
         default="",
@@ -98,7 +98,7 @@ class Article(models.Model):
         return self.art_title
 
 class Pill(models.Model):
-    pil_art_name = models.CharField(max_length=200)
+    pil_app_name = models.CharField(max_length=200)
     pil_name = models.CharField(max_length=200)
     pil_text = models.CharField(
         max_length=280,

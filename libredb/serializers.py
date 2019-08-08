@@ -5,7 +5,7 @@ from .models import Application, Article, Pill
 class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Application
-        fields = ['app_name', 'app_description', 'app_link']
+        fields = ['app_full_name', 'app_description', 'app_link']
 
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
