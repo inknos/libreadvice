@@ -61,19 +61,22 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     queryset = Application.objects.all().order_by('app_full_name')
     print(queryset)
     serializer_class = ApplicationSerializer
+    http_method_names = ['get', 'post', 'head']
 
 class ArticleViewSet(viewsets.ModelViewSet):
     variable_column = 'art_state'
     search_type = 'contains'
     filter = variable_column + '__' + search_type
     search_string = 'PU'
-    queryset = Article.objects.filter(**{filter: search_string})
+    queryset = Article.objects.filter(**{filter: search_string}).order_by('art_title')
     serializer_class = ArticleSerializer
+    http_method_names = ['get', 'post', 'head']
 
 class PillViewSet(viewsets.ModelViewSet):
     variable_column = 'pil_state'
     search_type = 'contains'
     filter = variable_column + '__' + search_type
     search_string = 'PU'
-    queryset = Pill.objects.filter(**{filter: search_string})
+    queryset = Pill.objects.filter(**{filter: search_string}).order_by('pil_name')
     serializer_class = PillSerializer
+    http_method_names = ['get', 'post', 'head']

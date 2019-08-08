@@ -122,4 +122,3 @@ class Pill(models.Model):
     pil_image_url = models.CharField(max_length=200, default="https://", blank=True)
     def __str__(self):
         return self.pil_name
-    
