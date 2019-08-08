@@ -21,8 +21,8 @@ def index(request):
     }
     return render(request, 'libredb/index.html', context)
 
-def detail(request, app_name):
-    application = get_object_or_404(Application, app_name=app_name)
+def detail(request, app_full_name):
+    application = get_object_or_404(Application, app_full_name=app_full_name)
     return render(request, 'libredb/detail.html', {
         'application' : application,
         'libre' : application.app_libre,
@@ -48,7 +48,7 @@ def results(request, app_name):
     return HttpResponse(response % app_name)
 
 def vote(request, app_name):
-    return HttpResponse("You're voting on question %s." % app_name)
+    return HttpResponse("You're voting on question %s." % app_full_name)
 
 @login_required
 def insert_application(request):
@@ -59,12 +59,21 @@ def insert_application(request):
 
 class ApplicationViewSet(viewsets.ModelViewSet):
     queryset = Application.objects.all().order_by('app_full_name')
+    print(queryset)
     serializer_class = ApplicationSerializer
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    queryset = Article.objects.all()
+    variable_column = 'art_state'
+    search_type = 'contains'
+    filter = variable_column + '__' + search_type
+    search_string = 'PU'
+    queryset = Article.objects.filter(**{filter: search_string})
     serializer_class = ArticleSerializer
 
 class PillViewSet(viewsets.ModelViewSet):
-    queryset = Pill.objects.all()
+    variable_column = 'pil_state'
+    search_type = 'contains'
+    filter = variable_column + '__' + search_type
+    search_string = 'PU'
+    queryset = Pill.objects.filter(**{filter: search_string})
     serializer_class = PillSerializer

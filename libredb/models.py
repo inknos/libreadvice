@@ -55,7 +55,7 @@ class Application(models.Model):
     app_ethic = models.BooleanField(default=False)
     app_used_for_libreadvice = models.BooleanField(default=False)
     def __str__(self):
-        return self.app_name
+        return self.app_full_name
 
 class Article(models.Model):
     art_app_name = models.CharField(max_length=200) # Name of the app: must be in the db
@@ -122,3 +122,4 @@ class Pill(models.Model):
     pil_image_url = models.CharField(max_length=200, default="https://", blank=True)
     def __str__(self):
         return self.pil_name
+    

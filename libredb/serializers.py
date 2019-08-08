@@ -10,9 +10,9 @@ class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Article
-        fields = ['art_title', 'art_abstract']
+        fields = ['art_title', 'art_abstract', 'art_link']
 
 class PillSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Pill
-        fields = ['pil_name', 'pil_text', 'pil_short']
+        fields = ['pil_name', 'pil_text', 'pil_short', 'pil_state']
