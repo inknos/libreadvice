@@ -5,7 +5,10 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render
 from django.template import loader
 
-from .models import Application
+from rest_framework import viewsets
+from .serializers import ApplicationSerializer, ArticleSerializer, PillSerializer
+
+from .models import Application, Article, Pill
 
 #def index(request):
 #    return HttpResponse("Hello, world. You're at the db index.")
@@ -52,3 +55,16 @@ def insert_application(request):
     #query_results = Application.objects.order_by('app_name')
 
     return HttpResponse("you are viewing the db")
+
+
+class ApplicationViewSet(viewsets.ModelViewSet):
+    queryset = Application.objects.all().order_by('-name')
+    serializer_class = ApplicationSerializer
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
+class PillViewSet(viewsets.ModelViewSet):
+    queryset = Pill.objects.all()
+    serializer_class = PillSerializer

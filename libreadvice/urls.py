@@ -20,4 +20,5 @@ from django.urls import include, path
 urlpatterns = [
     path('libredb/', include('libredb.urls')),
     path('admin/', admin.site.urls),
+    #path('restapi/', include('restapi.urls')),
 ]
