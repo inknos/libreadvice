@@ -8,7 +8,9 @@ from django.utils import timezone
 # TODO insert help_text to see grey text to describe fields
 
 class Application(models.Model):
-    app_full_name = models.CharField(max_length=200)
+    app_full_name = models.CharField(
+        max_length=200,
+    )
     app_description = models.CharField(
         max_length=400,
         default="",
@@ -47,13 +49,26 @@ class Application(models.Model):
         choices=APP_GRADE_CHOICES,
         default='3',
     )
+
     app_design = models.CharField(
         max_length=1,
         choices=APP_GRADE_CHOICES,
         default='3',
     )
+
     app_ethic = models.BooleanField(default=False)
+
     app_used_for_libreadvice = models.BooleanField(default=False)
+
+    #app_date = models.CharField(max_length=200, default="", blank=True)
+    #app_date = models.DateField(default=timezone.now)
+
+    #app_creation_date = models.DateField(
+    #    auto_now_add=True, editable=False)
+
+    #app_modification_date = models.DateField(
+    #     auto_now=True, editable=False)
+
     def __str__(self):
         return self.app_full_name
 
@@ -93,32 +108,52 @@ class Article(models.Model):
         choices=ART_STATE_CHOICE,
         default='TO'
     )
+    art_date = models.DateField(default=timezone.now)
+
+    art_creation_date = models.DateField(
+        auto_now_add=True, editable=False)
+
+    art_modification_date = models.DateField(
+        auto_now=True, editable=False)
 
     def __str__(self):
         return self.art_title
 
 class Pill(models.Model):
     pil_app_name = models.CharField(max_length=200)
+
     pil_name = models.CharField(max_length=200)
+
     pil_text = models.CharField(
         max_length=280,
         default="",
         blank=True,
     )
+
     pil_short = models.CharField(max_length=200, default="", blank=True)
-    PIL_STATE_CHOICE = [
+
+    PIL_STATE_CHOICE = (
         ('TO', 'TODO'),             # Just a concept
         ('WP', 'Work In Progress'), # Started, link created
         ('DR', 'Drafted'),          # Title created, subtitle, ...
         ('RW', 'Review'),           # Finished it needs correction
         ('TP', 'To Publish'),       # Ready to go online
         ('PU', 'Published'),        #
-    ]
+    )
     pil_state = models.CharField(
         max_length=2,
         choices=PIL_STATE_CHOICE,
         default='TO',
     )
     pil_image_url = models.CharField(max_length=200, default="https://", blank=True)
+
+    pil_date = models.DateField(default=timezone.now)
+
+    pil_creation_date = models.DateField(
+        auto_now_add=True, editable=False)
+
+    pil_modification_date = models.DateField(
+        auto_now=True, editable=False)
+
     def __str__(self):
         return self.pil_name
