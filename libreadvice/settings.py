@@ -18,7 +18,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-ALLOWERD_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.libreadvice.herokuapp.com']
+#ALLOWERD_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.libreadvice.herokuapp.com']
 
 LOGGING = {
     'version': 1,
