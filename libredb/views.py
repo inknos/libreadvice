@@ -14,7 +14,7 @@ from .models import Application, Article, Pill
 #    return HttpResponse("Hello, world. You're at the db index.")
 
 def index(request):
-    latest_application_list = Application.objects.order_by('app_name')[:5]
+    latest_application_list = Application.objects.order_by('app_full_name')[:5]
     #template = loader.get_template('libredb/index.html')
     context = {
         'latest_application_list': latest_application_list,
@@ -59,7 +59,6 @@ def insert_application(request):
 
 class ApplicationViewSet(viewsets.ModelViewSet):
     queryset = Application.objects.all().order_by('app_full_name')
-    print(queryset)
     serializer_class = ApplicationSerializer
     http_method_names = ['get', 'post', 'head']
 

@@ -60,14 +60,13 @@ class Application(models.Model):
 
     app_used_for_libreadvice = models.BooleanField(default=False)
 
-    #app_date = models.CharField(max_length=200, default="", blank=True)
-    #app_date = models.DateField(default=timezone.now)
+    app_date = models.DateField(default=timezone.now)
 
-    #app_creation_date = models.DateField(
-    #    auto_now_add=True, editable=False)
+    app_creation_date = models.DateField(
+        auto_now_add=True, editable=False)
 
-    #app_modification_date = models.DateField(
-    #     auto_now=True, editable=False)
+    app_modification_date = models.DateField(
+         auto_now=True, editable=False)
 
     def __str__(self):
         return self.app_full_name
