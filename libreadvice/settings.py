@@ -20,6 +20,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 #ALLOWERD_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.libreadvice.herokuapp.com']
 
+ALLOWED_HOSTS = ['libreadvice.herokuapp.com']
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
